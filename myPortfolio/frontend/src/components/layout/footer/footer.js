@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
-export class Header extends Component {
+export class Footer extends Component {
     render() {
         return (
           <Navbar  bg="dark" variant="dark" expand="lg">
@@ -20,4 +20,4 @@ export class Header extends Component {
     }
 }
 
-export default Header
+export default Footer
