@@ -5,74 +5,98 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
+import Carousel from "react-bootstrap/Carousel";
+
+import { config } from "react-spring";
 
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 import Footer from "./layout/footer/footer";
 import Header from "./layout/header/header";
 import WorkCard from "./card/work-card";
+import TreeView from "./tree/Tree";
+import Viewpager from "./view-pager/Viewpager";
+import NameBanner from "./name-banner/NameBanner";
+
+let slides = [
+  {
+    key: 1,
+    content: "1",
+  },
+  {
+    key: 2,
+    content: "2",
+  },
+  {
+    key: 3,
+    content: "2",
+  },
+  {
+    key: 4,
+    content: "3",
+  },
+  {
+    key: 5,
+    content: "4",
+  },
+  {
+    key: 6,
+    content: "5",
+  },
+  {
+    key: 7,
+    content: "6",
+  },
+  {
+    key: 8,
+    content: "7",
+  },
+];
 
 class App extends Component {
+  state = {
+    goToSlide: 0,
+    offsetRadius: 2,
+    showNavigation: true,
+    config: config.gentle,
+  };
   render() {
     return (
       <div>
         <ParallaxProvider>
-          <Row style={{ position: "absolute", width: "100%" }}>
-            <Header />
-            <Col xs={3}  style={{ marginRight: "1%" }}>
+          <Header />
+          <Row>
+            <Col xs={3} style={{ marginRight: "10%" }}>
               <Container
-                style={{ width: "30%", alignContent: "left", margin: 0 }}
+                style={{ width: "100%", alignContent: "left", margin: 0 }}
               >
-                <Jumbotron>
-                  <h1>Hello, world!</h1>
-                  <p>
-                    This is a simple hero unit, a simple jumbotron-style
-                    component for calling extra attention to featured content or
-                    information.
-                  </p>
-                  <p>
-                    <Button variant="primary">Learn more</Button>
-                  </p>
-                </Jumbotron>
-                <Header />
+                <Row style={{marginTop: '5%'}}>
+                  <NameBanner />
+                </Row>
+                <Row style={{
+              position: "fixed",
+              bottom: "7%",
+              
+             
+            }}>
+                  <TreeView  />
+                </Row>
               </Container>
             </Col>
             <Col xs={6}>
-              <ListGroup
-                className="overflow-auto"
-                style={{ position: "absolute", height: "100vh", width: '100%' }}
-              >
-                <ListGroup.Item
-                  style={{ height: "70%", width: "80%", margin: 50 }}
-                >
-                  <WorkCard />
-                </ListGroup.Item>
-
-                <ListGroup.Item
-                  style={{ height: "70%", width: "80%", margin: 50 }}
-                >
-                  <WorkCard />
-                </ListGroup.Item>
-
-                <ListGroup.Item
-                  style={{ height: "70%", width: "80%", margin: 50 }}
-                >
-                  <WorkCard />
-                </ListGroup.Item>
-              </ListGroup>
+              <Row>
+                <WorkCard />
+              </Row>
             </Col>
-            <Footer
-              style={{
-                position: "fixed",
-                bottom: "0",
-                left: "0",
-                width: "100%",
-              }}
-            />
           </Row>
+          <Footer
+            style={{
+              position: "fixed",
+              bottom: "0",
+              left: "0",
+              width: "100%",
+            }}
+          />
         </ParallaxProvider>
       </div>
     );

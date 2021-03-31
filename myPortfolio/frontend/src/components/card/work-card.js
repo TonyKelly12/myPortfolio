@@ -1,21 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useSpring, animated as a } from "react-spring";
+import { Global } from "./styles";
+import './styles.css'
 
-import Card from "react-bootstrap/Card";
-
-export class WorkCard extends Component {
-  render() {
-    return (
-      <Card style={{height: "80vh", width: '80%'}}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    );
-  }
+function WorkCard() {
+  const [flipped, set] = useState(false);
+  const { transform, opacity } = useSpring({
+    opacity: flipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 500, friction: 80 },
+  });
+  return (
+    <div>
+      
+      <div onClick={() => set((state) => !state)}>
+        <a.div
+          className="c back"
+          style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
+        />
+        <a.div
+          className="c front"
+          style={{
+            opacity,
+            transform: transform.interpolate((t) => `${t} rotateX(180deg)`),
+          }}
+        />
+      </div>
+    </div>
+    
+   
+  );
 }
 
 export default WorkCard;
