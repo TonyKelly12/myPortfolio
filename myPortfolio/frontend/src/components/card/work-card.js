@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSpring, animated as a } from "react-spring";
-import { Global } from "./styles";
+
 import './styles.css'
 
 function WorkCard() {
@@ -17,7 +17,9 @@ function WorkCard() {
         <a.div
           className="c back"
           style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}
-        />
+        >
+          <h1 style={{color: 'white', fontSize: '40px'}}>Testing</h1>
+        </a.div>
         <a.div
           className="c front"
           style={{

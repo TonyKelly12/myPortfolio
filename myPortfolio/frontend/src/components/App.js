@@ -11,47 +11,15 @@ import { config } from "react-spring";
 
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
+import Deck from "./card-deck/CardDeck"
 import Footer from "./layout/footer/footer";
 import Header from "./layout/header/header";
 import WorkCard from "./card/work-card";
 import TreeView from "./tree/Tree";
 import Viewpager from "./view-pager/Viewpager";
 import NameBanner from "./name-banner/NameBanner";
+import  Global  from "./Styles"
 
-let slides = [
-  {
-    key: 1,
-    content: "1",
-  },
-  {
-    key: 2,
-    content: "2",
-  },
-  {
-    key: 3,
-    content: "2",
-  },
-  {
-    key: 4,
-    content: "3",
-  },
-  {
-    key: 5,
-    content: "4",
-  },
-  {
-    key: 6,
-    content: "5",
-  },
-  {
-    key: 7,
-    content: "6",
-  },
-  {
-    key: 8,
-    content: "7",
-  },
-];
 
 class App extends Component {
   state = {
@@ -64,9 +32,11 @@ class App extends Component {
     return (
       <div>
         <ParallaxProvider>
+         <Global />
           <Header />
+          
           <Row>
-            <Col xs={3} style={{ marginRight: "10%" }}>
+            <Col xs={4} style={{ marginRight: "10%" }}>
               <Container
                 style={{ width: "100%", alignContent: "left", margin: 0 }}
               >
@@ -86,6 +56,7 @@ class App extends Component {
             <Col xs={6}>
               <Row>
                 <WorkCard />
+                 
               </Row>
             </Col>
           </Row>

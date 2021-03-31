@@ -26,7 +26,7 @@ const Tree = memo(({ children, name, style, defaultOpen = false }) => {
 
 const TreeView = () => (
   <>
-    <Global />
+    {/* <Global /> */}
     <Tree name="main" defaultOpen>
       <Tree name="hello" />
       <Tree name="subtree with children">
