@@ -14,6 +14,7 @@ const Global = createGlobalStyle`
     padding: 0;
     background: #191b21;
     overflow: hidden;
+    
     font-family: 'Monospaced Number', 'Chinese Quote', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -35,6 +36,8 @@ const Global = createGlobalStyle`
   }
   #root {
     padding: 30px;
+    display: flex;
+  align-items: center;
   }
 `
 

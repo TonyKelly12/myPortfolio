@@ -1,0 +1,30 @@
+.slider {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 60vw;
+    height: 80vh;
+    border-radius: 10px;
+}
+
+.up-arrow {
+    position: relative;
+    
+    font-size: 3rem;
+    color: aquamarine;
+    z-index: 10;
+}
+
+.down-arrow {
+    position: relative;
+    font-size: 3rem;
+    color: aquamarine;
+    z-index: 10;
+}
