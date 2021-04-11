@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSpring, animated, interpolate } from "react-spring";
-import { useGesture } from "react-with-gesture";
+import { useDrag,  } from "react-use-gesture";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import SlideItems from "./items";
 import "./styles.css";
@@ -10,31 +10,24 @@ const ImageSlider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
  
   const length = slides.length;
-
+  let pictureChanged = false
   const [{ y }, set] = useSpring(() => ({ y: 0 }))
-  const bind = useGesture (( { down, delta, first}) => {
-    if(delta[1] <= 400 && delta[1] >= -400){
-      console.log('delta', delta[1])
-    }
-    
-    
-    set({ y: down ? delta[1] : 0 });
-
-    if ( first && delta[1] <= -200 ){
-      console.log('next called', current)
-      console.log('event', event)
-      setCurrent(current => current === length - 1 ? 0 : current + 1);
-      console.log('current', current)
-      
-    }else if ( first && delta[1]  >= 200) {
-      console.log('previous called', current)
-    setCurrent(current => current === 0 ? length - 1 : current - 1);
-    console.log('current', current)
-    
+  const bind = useDrag(({ down, cancel, movement: [x, y]}) =>{
+    set({ y: down ? y : 0 })
+    console.log(y)
+    if(y > 200){
+      cancel()
+      set({ y: 0 })
+      nextImg()
     }
 
+    if (y < -200) {
+      cancel()
+      set({ y: 0 })
+      previousImg()
+    }
+  }) 
     
-  })
 
   const nextImg = () => {
     console.log('next called', current)
