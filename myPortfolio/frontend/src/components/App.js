@@ -37,7 +37,7 @@ class App extends Component {
           <Header />
 
           <Row>
-            <Col xs={4} style={{ marginRight: "10%", zIndex: 15 }}>
+            <Col xm={3} style={{ marginRight: "5%"}}>
               <Container
                 style={{ width: "100%", alignContent: "left", margin: 0 }}
               >
@@ -54,9 +54,9 @@ class App extends Component {
                 </Row>
               </Container>
             </Col>
-            <Col xs={5}>
-              <Row style={{width:'50%'}}>
-                {/* <WorkCard /> */}
+            <Col xs={7}>
+              <Row style={{width:'100%', height:'100vh'}}>
+                
                 
                    <ImageSlider slides={SlideItems} />      
                

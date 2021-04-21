@@ -1,108 +1,86 @@
 import React, { useState } from "react";
-import { useSpring, animated, interpolate } from "react-spring";
-import { useDrag } from "react-use-gesture";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import SlideItems from "./items";
+import { animated, useTransition } from "react-spring";
+
+import { AiFillCaretDown, AiFillCaretUp, AiOutlineMenu } from "react-icons/ai";
+
 import "./styles.css";
-import { range } from "lodash";
 
 const ImageSlider = ({ slides }) => {
-  const [current, setCurrent] = useState(0);
+  const [[current, dir], setIndex] = useState([0, 0]);
 
-  const length = slides.length;
-  let pictureChanged = false;
-  const [{ y }, set] = useSpring(() => ({ y: 0 }));
-  const bind = useDrag(({ down, cancel, canceled, movement: [x, y] }) => {
-    set({ y: down ? y : 0 });
-    console.log(y);
+  const slideLeft = () =>
+    setIndex([(current - 1 + slides.length) % slides.length, -1]);
 
-    if (y === 400 && canceled) {
-      console.log("back to false");
-      pictureChanged = false;
-    }
-
-    if (y >= 400 && !pictureChanged) {
-      cancel();
-      if (canceled) {
-        set({ y: 0 });
-        nextImg();
-        pictureChanged = true;
-      }
-    }
-
-    if (y <= -400 && !pictureChanged) {
-      cancel();
-      if (canceled) {
-        set({ y: 0 });
-        previousImg();
-      }
-    }
-  });
-
-  const nextImg = () => {
-    console.log("next called", current);
-    console.log("length", length);
-    setCurrent(current === length - 1 ? 0 : current + 1);
-    console.log("current", current);
-  };
-
-  const previousImg = () => {
-    console.log("previous called", current);
-    setCurrent(current === 0 ? length - 1 : current - 1);
-    console.log("current", current);
-  };
+  const slideRight = () => setIndex([(current + 1) % slides.length, 1]);
 
   if (!Array.isArray(slides) || slides.length <= 0) {
     // TODO: add default image
     return null;
   }
 
+  const transitions = useTransition(slides[current], (item) => item.url, {
+    from: {
+      opacity: 0,
+      transform: `translate3d(0,${dir === 1 ? 100 : -100}%,0) scale(0.5)`,
+    },
+    enter: {
+      opacity: 1,
+      transform: "translate3d(0%,0%,0) scale(1)",
+    },
+    leave: {
+      opacity: 0,
+      transform: `translate3d(0,${dir === 1 ? -100 : 100}%,0) scale(0.5)`,
+    },
+  });
+
   return (
     <section className="slider">
-      <AiFillCaretDown className="down-arrow" onClick={previousImg} />
-      <AiFillCaretUp className="up-arrow" onClick={nextImg} />
-      {SlideItems.map((slide, index) => {
+      <div className="arrow-box center">
+        <AiFillCaretUp className="up-arrow" onClick={slideRight} />
+        <AiOutlineMenu className="modal-icon" />
+        <AiFillCaretDown className="down-arrow" onClick={slideLeft} />
+      </div>
+      {transitions.map(({ item, props, key }) => {
         return (
-          <animated.div
-            className={index === current ? "slide active" : "slide"}
-            key={index}
-            style={{
-              pointerEvents: "all",
-            }}
-          >
-            {index === current && (
-              <animated.img
-                style={{
-                  opacity: y.interpolate({
-                    map: Math.abs,
-                    range: [0, 300],
-                    output: [1, 0],
-                    extrapolate: "clamp",
-                  }),
-                  transform: y.interpolate((y) => `translate3d(0, ${y}px, 0)`),
-                  zIndex: 25,
-                }}
-                {...bind()}
-                src={slide.url}
-                alt="add alt txt"
-                className="fg"
-              />
-            )}
-          </animated.div>
+          <div className="image-container">
+            <animated.img
+            className="image"
+            style={props}
+            key={key}
+            src={item.url}
+          />
+          </div>
+            
         );
       })}
+      );
+      <div className="counter-container">
+            <h1 className="counter">{current + 1}</h1>
+          </div>
     </section>
   );
 };
 
 export default ImageSlider;
 
-// const throwAway = {{
-//   transform: up
-//     .interpolate({
-//       map: Math.abs,
-//       range: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
-//       output: [0, 30, 60, 90, 120, -120, -90, , -60, -30, 120],
-//       extrapolate: "clamp",
-//     })
-//     .interpolate((up) => `translateY(${up}%)`),
+// TODO: fix gesture control below
+
+  // const [{ y }, set] = useSpring(() => ({ y: 0 }));
+  // const bind = useDrag(({ down, cancel, canceled, movement: [x, y] }) => {
+  //   set({ y: down ? y : 0 });
+  //   console.log(y);
+  //   if (y >= 50 && !pictureChanged) {
+  //     cancel();
+  //     if (canceled) {
+  //       set({ y: 0 });
+  //       slideLeft()
+  //     }
+  //   }
+
+  //   if (y <= -50 && !pictureChanged) {
+  //     cancel();
+  //     if (canceled) {
+  //       slideRight()
+  //     }
+  //   }
+  // });
