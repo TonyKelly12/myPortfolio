@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { animated, useTransition } from "react-spring";
 
 import { AiFillCaretDown, AiFillCaretUp, AiOutlineMenu } from "react-icons/ai";
+import JobSelectionModal from "./Modal/Modal"
 
 import "./styles.css";
 
 const ImageSlider = ({ slides }) => {
   const [[current, dir], setIndex] = useState([0, 0]);
+  const [modalShow, setModalShow] = useState(false);
 
   const slideLeft = () =>
     setIndex([(current - 1 + slides.length) % slides.length, -1]);
@@ -37,7 +39,7 @@ const ImageSlider = ({ slides }) => {
     <section className="slider">
       <div className="arrow-box center">
         <AiFillCaretUp className="up-arrow" onClick={slideRight} />
-        <AiOutlineMenu className="modal-icon" />
+        <AiOutlineMenu className="modal-icon" onClick={() => setModalShow(true)}/>
         <AiFillCaretDown className="down-arrow" onClick={slideLeft} />
       </div>
       {transitions.map(({ item, props, key }) => {
@@ -57,6 +59,10 @@ const ImageSlider = ({ slides }) => {
       <div className="counter-container">
             <h1 className="counter">{current + 1}</h1>
           </div>
+          <JobSelectionModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </section>
   );
 };
