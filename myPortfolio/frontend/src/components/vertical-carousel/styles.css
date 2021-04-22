@@ -11,8 +11,8 @@
 
 
 .image {
-  width: 65vw;
-  height: 80vh;
+  width: 75vw;
+  height: 85vh;
   border-radius: 5%;
   position: absolute;
   top: 10%;
@@ -75,7 +75,7 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: fixed;
   z-index: 25;
-  left: 39%;
+  left: 30%;
   top: 65%;
   opacity: 75%;
 }

@@ -61,6 +61,7 @@ const ImageSlider = ({ slides }) => {
           </div>
           <JobSelectionModal
         show={modalShow}
+        slides={slides}
         onHide={() => setModalShow(false)}
       />
     </section>

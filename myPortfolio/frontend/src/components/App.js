@@ -37,7 +37,7 @@ class App extends Component {
           <Header />
 
           <Row>
-            <Col xm={3} style={{ marginRight: "5%"}}>
+            <Col xm={3} style={{ marginRight: "2%"}}>
               <Container
                 style={{ width: "100%", alignContent: "left", margin: 0 }}
               >
@@ -54,7 +54,7 @@ class App extends Component {
                 </Row>
               </Container>
             </Col>
-            <Col xs={7}>
+            <Col xs={8}>
               <Row style={{width:'100%', height:'100vh'}}>
                 
                 

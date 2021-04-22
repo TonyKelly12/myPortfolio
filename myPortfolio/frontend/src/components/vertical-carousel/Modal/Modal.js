@@ -12,11 +12,6 @@ function JobSelectionModal(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered       
       >
-        <Modal.Header >
-          <Modal.Title id="contained-modal-title-vcenter">
-            My Experience
-          </Modal.Title>
-        </Modal.Header>
         <Modal.Body>
           <WorkCard/>
         </Modal.Body>
