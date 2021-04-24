@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')r1n!%!s=!x$%$!4l-m4awdgfkabr*n&s6yj2=%c!c^r+d-6y9'
+SECRET_KEY = ")r1n!%!s=!x$%$!4l-m4awdgfkabr*n&s6yj2=%c!c^r+d-6y9"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'appointments',
     'rest_framework',
-    'frontend'
+    'frontend',
+    'jobs',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -83,6 +88,8 @@ DATABASES = {
     }
 }
 
+FIREBASE_ORM_CERTIFICATE = r'C:\Users\Tony\Documents\Repos\Python\Python_Portfolio\myPortfolio\myPortfolio\my-portfolio-admin-key.json'
+FIREBASE_ORM_BUCKET_NAME = "my-portfolio-bee3b.appspot.com"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

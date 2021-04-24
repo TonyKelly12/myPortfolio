@@ -1,68 +1,33 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from '../store';
 
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
-import { config, a } from "react-spring";
-
-import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-
-
-import Footer from "./layout/footer/footer";
 import Header from "./layout/header/header";
-import WorkCard from "./card/work-card";
-import TreeView from "./tree/Tree";
+import Footer from "./layout/footer/footer";
 
-import NameBanner from "./name-banner/NameBanner";
-import ImageSlider from "./vertical-carousel/Slider";
-import SlideItems from "./vertical-carousel/items"
+import Home from "./route-components/Home";
+import JobDetail from "./route-components/JobDetail"
+
 import Global from "./Styles";
 
-
 class App extends Component {
-  state = {
-    goToSlide: 0,
-    offsetRadius: 2,
-    showNavigation: true,
-    config: config.gentle,
-  };
   render() {
     return (
-      <div>
-        <ParallaxProvider>
+      <Provider store={store}>  
+      <Router>
+        <div>
           <Global />
           <Header />
-
-          <Row>
-            <Col xm={3} style={{ marginRight: "2%"}}>
-              <Container
-                style={{ width: "100%", alignContent: "left", margin: 0 }}
-              >
-                <Row style={{ marginTop: "5%" }}>
-                  <NameBanner />
-                </Row>
-                <Row
-                  style={{
-                    position: "fixed",
-                    bottom: "7%",
-                  }}
-                >
-                  <TreeView />
-                </Row>
-              </Container>
-            </Col>
-            <Col xs={8}>
-              <Row style={{width:'100%', height:'100vh'}}>
-                
-                
-                   <ImageSlider slides={SlideItems} />      
-               
-              </Row>
-            </Col>
-          </Row>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/jobs">
+              <JobDetail/>
+            </Route>
+          </Switch>
           <Footer
             style={{
               position: "fixed",
@@ -71,8 +36,9 @@ class App extends Component {
               width: "100%",
             }}
           />
-        </ParallaxProvider>
-      </div>
+        </div>
+      </Router>   
+      </Provider>
     );
   }
 }

@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
 pylint-django = "*"
+django-firebase-orm = "*"
 
 [dev-packages]
 pylint = "*"
