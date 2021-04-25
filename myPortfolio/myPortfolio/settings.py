@@ -88,7 +88,7 @@ DATABASES = {
     }
 }
 
-FIREBASE_ORM_CERTIFICATE = r'C:\Users\Tony\Documents\Repos\Python\Python_Portfolio\myPortfolio\myPortfolio\my-portfolio-admin-key.json'
+FIREBASE_ORM_CERTIFICATE = r'C:\Users\Tony\Documents\Repos\Python\Python_Portfolio\my-portfolio-admin-key.json'
 FIREBASE_ORM_BUCKET_NAME = "my-portfolio-bee3b.appspot.com"
 
 # Password validation
