@@ -26,6 +26,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
+      console.log('props', this.props)
       this.props.getJobs();
   }
 
@@ -67,4 +68,4 @@ const mapStateToProps = state => ({
     jobs: state.jobsReducer.jobs
 })
 
-export default connect(mapStateToProps, {getJobs})(Home);
+export default connect(mapStateToProps, { getJobs })(Home);

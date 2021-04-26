@@ -27,7 +27,20 @@ def jobsAPI(request):
 
 @api_view(["GET"])
 def getJobs(request):
-    result = db.collection('jobs').document('qb4tGM8xxm7M1umhPC2d').get().to_dict()
-    data = result
+    result = db.collection('jobs').get()
+    data = []
+
+    for jobRef in result:
+        job = jobRef.to_dict()
+        data.append(job)
+
     print(data)
-    return Response(result) 
+    return Response(data) 
+
+@api_view(["GET"])
+def getJobById(request, pk):
+    result = db.collection('jobs').document(pk).get()
+    data = result.to_dict()
+
+    print(data)
+    return Response(data) 
