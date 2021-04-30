@@ -18,19 +18,17 @@ class Home extends Component {
         jobs: PropTypes.array.isRequired
     }
   
-    state = {
-    goToSlide: 0,
-    offsetRadius: 2,
-    showNavigation: true,
-    config: config.gentle,
-  };
-
-  componentDidMount() {
-      console.log('props', this.props)
-      this.props.getJobs();
-  }
+   
+ constructor(props){
+   super(props)
+   
+ }
+   componentDidMount(){
+     this.props.getJobs();
+   } 
 
   render() {
+    console.log(this.props.jobs)
     return (
       <div>
          
@@ -54,7 +52,7 @@ class Home extends Component {
           </Col>
           <Col xs={8}>
             <Row style={{ width: "100%", height: "100vh" }}>
-              <ImageSlider slides={SlideItems} />
+              <ImageSlider slides={this.props.jobs} />
             </Row>
           </Col>
         </Row>
