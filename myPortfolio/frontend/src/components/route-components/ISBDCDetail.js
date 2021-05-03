@@ -5,13 +5,9 @@ import Col from "react-bootstrap/Col";
 
 import { config, a } from "react-spring";
 
-import TreeView from "../tree/Tree";
 
-import NameBanner from "../name-banner/NameBanner";
-import ImageSlider from "../vertical-carousel/Slider";
-import SlideItems from "../vertical-carousel/items";
-
-class JobDetail extends Component {
+import JobDetailCard from "../job-detail-card/JobDetailCard"
+class ISBDCDetail extends Component {
   state = {
     goToSlide: 0,
     offsetRadius: 2,
@@ -21,14 +17,11 @@ class JobDetail extends Component {
   render() {
     return (
       <div>
-        <Row>
-          <Col>
-            <ImageSlider slides={SlideItems} />
-          </Col>
-        </Row>
+        
+        <JobDetailCard />
       </div>
     );
   }
 }
 
-export default JobDetail;
+export default ISBDCDetail;

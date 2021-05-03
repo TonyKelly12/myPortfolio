@@ -5,19 +5,19 @@ import { AiFillCaretDown, AiFillCaretUp, AiOutlineMenu } from "react-icons/ai";
 import JobSelectionModal from "./Modal/Modal";
 
 import "./styles.css";
+import Button from "react-bootstrap/Button";
+import { Link, Route } from "react-router-dom";
 
 const ImageSlider = (props) => {
-  
   // const [jobCards, setJobCards] = useState(props.slides);
 
   // useEffect(() => {
   //   setJobCards(props.slides);
-    
+
   // }, [jobCards]);
   const [[current, dir], setIndex] = useState([0, 0]);
   const [modalShow, setModalShow] = useState(false);
-console.log("slides", props.slides);
-  
+  console.log("slides", props.slides);
 
   const slideLeft = () =>
     setIndex([(current - 1 + props.slides.length) % props.slides.length, -1]);
@@ -32,7 +32,7 @@ console.log("slides", props.slides);
 
   const transitions = useTransition(
     props.slides[current],
-    (item) => item ? item.cardURL : '',
+    (item) => (item ? item.cardURL : ""),
     {
       from: {
         opacity: 0,
@@ -59,16 +59,33 @@ console.log("slides", props.slides);
         />
         <AiFillCaretDown className="down-arrow" onClick={() => slideLeft()} />
       </div>
-      {transitions.map(({ item, props, key }) => {
+      {transitions.map(({ item, key, props }) => {
         console.log("item", item);
         return (
-          <div className="image-container">
+          <div key={key} className="image-container">
+            <animated.div style={props} className="button-container">
+              <Route
+                render={({ history }) => (
+                  <Button
+                  variant="outline-light"
+                style={{ width: "200px", height: "80px" }}
+                    onClick={() => {
+                      history.push("/" + item.route);
+                    }}
+                  >
+                   Open
+                  </Button>
+                )}
+              />
+             
+            </animated.div>
+
             <animated.img
               className="image"
               style={props}
               key={key}
-              src={item ? item.cardURL : ''}
-            />
+              src={item ? item.cardURL : ""}
+            ></animated.img>
           </div>
         );
       })}
